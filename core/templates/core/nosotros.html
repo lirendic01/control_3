@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+  
+
+<h2>Nosotros</h2>
+<section class="hero">
+  <div class="container">
+  </div>
+</section>
+ <br>
+<section class="main-content">
+  <div class="container">
+    Bienvenido a GameStore, tu destino definitivo para todos tus deseos de videojuegos. En GameStore, 
+    nos apasiona ofrecerte una experiencia de juego excepcional, 
+    donde la diversión y la emoción se encuentran en cada esquina.
+      <br>
+
+    En nuestra tienda, encontrarás una amplia selección de los últimos
+     y más emocionantes videojuegos para todas las plataformas, 
+     desde las consolas de última generación hasta las computadoras de escritorio
+      y los dispositivos móviles. Desde épicas aventuras de mundo abierto hasta desafiantes 
+      juegos de estrategia y emocionantes títulos multijugador, tenemos algo para cada tipo de jugador.
+      <br>
+
+    Nuestro equipo está comprometido con brindarte un servicio excepcional y asistencia experta para que puedas encontrar exactamente 
+    lo que buscas. Ya sea que estés buscando el último lanzamiento de tu franquicia favorita o explorando nuevos mundos virtuales, 
+    estamos aquí para ayudarte a encontrar el juego perfecto para ti.
+      <br>
+
+
+    Además, en GameStore, no solo nos preocupamos por ofrecerte los mejores juegos, 
+    sino también por brindarte una experiencia de compra conveniente y sin complicaciones. 
+    Con opciones de pago seguras y envío rápido, puedes disfrutar de tus nuevos juegos en poco tiempo.
+      <br>
+
+    Únete a nuestra comunidad de jugadores apasionados y descubre todo lo que GameStore tiene para ofrecer. 
+    ¡Estamos emocionados de ser tu destino número uno para todas tus necesidades de videojuegos!
+  </div>
+</section>
+ 
+<br>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <!-- cambio para que se muestre los productos en el index -->
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+      <div class="card" style="width: 22rem;">
+        <img src="{% static 'core/img/trabajadora1.jpeg' %}" style="height: 290px;" class="card-img-top" alt="...">
+        
+        <div class="card-body">
+          <h2 class="team-member-name">Estephany Cárdenas</h2>
+          <p class="team-member-description">Gerente General</p>
+          <a href="mailto:estephany@gmail.com" style="color: blue;">estephany@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+      <div class="card" style="width: 22rem;">
+        <img src="{% static 'core/img/trabajadora2.png' %}" class="card-img-top" alt="...">
+        
+        <div class="card-body">
+          <h2 class="team-member-name">Lily Rendic</h2>
+          <p class="team-member-description">Encargada de Marketing</p>
+          <a href="mailto:estephany@gmail.com" style="color: blue;">lily@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<br>
+
+    
+{% endblock content %}

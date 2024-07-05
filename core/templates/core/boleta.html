@@ -1,0 +1,114 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center">
+        <h1 style="color: black !important; margin-top: 20px;">
+            Boleta N° {{ boleta.nro_boleta }} de {{ boleta.cliente.usuario.first_name }} {{ boleta.cliente.usuario.last_name }}
+        </h1>
+    </div>
+    <div class="col-12 text-right">
+        <table class="mb-3" style="float: right;">
+            <tr>
+                <td class="td_img_estado_boleta"> 
+                    <img src="{% static 'core/img/vendido.png' %}" style="width: 75px;">
+                </td>
+                <td class="td_img_estado_boleta"> 
+                    <img src="{% static 'core/img/despachado.png' %}" style="width: 75px;">
+                </td>
+                <td class="td_img_estado_boleta"> 
+                    <img src="{% static 'core/img/entregado.png' %}" style="width: 75px;">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_fec_estado_boleta"> 
+                    Vendido <br> 
+                    {{ boleta.fecha_venta|formatear_fecha }}
+                </td>
+                <td class="td_fec_estado_boleta"> 
+                    Despachado <br> 
+                    {{ boleta.fecha_despacho|formatear_fecha }}
+                </td>
+                <td class="td_fec_estado_boleta"> 
+                    Entregado <br> 
+                    {{ boleta.fecha_entrega|formatear_fecha }}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col">
+        <table id="tabla-principal" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Categoría</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>% Desc. Subscriptor</th>
+                    <th>% Desc. Oferta</th>
+                    <th>% Desc. Total</th>
+                    <th>Descuentos</th>
+                    <th>Precio a pagar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in detalle_boleta %}
+                <tr>
+                    <td>{{ item.bodega.producto.categoria.nombre }}</td>
+                    <td>{{ item.bodega.producto.nombre }}</td>
+                    <td>{{ item.precio|formatear_dinero }}</td>
+                    <td>{{ item.descuento_subscriptor|formatear_porcentaje }}</td>
+                    <td>{{ item.descuento_oferta|formatear_porcentaje }}</td>
+                    <td>{{ item.descuento_total|formatear_porcentaje }}</td>
+                    <td>{{ item.descuentos|formatear_dinero }}</td>
+                    <td>{{ item.precio_a_pagar|formatear_dinero }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12" style="text-align: right;">
+        <table class="mb-3" style="display: inline-block;">
+            <tr>
+                <td><strong>Precio sin IVA</strong></td>
+                <td>
+                    <input type="text" class="form-control" value="{{ boleta.monto_sin_iva|formatear_dinero }}" style="font-weight: bold;" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Valor del IVA (19%)</strong></td>
+                <td>
+                    <input type="text" class="form-control" value="{{ boleta.iva|formatear_dinero }}" style="font-weight: bold;" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Total a pagar</strong></td>
+                <td>
+                    <input type="text" class="form-control" value="{{ boleta.total_a_pagar|formatear_dinero }}" style="font-weight: bold;" readonly>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tabla-principal').DataTable({
+            paging: false, // Desactivar la paginación
+            searching: false, // Desactivar la búsqueda
+            ordering: false, // Desactivar el ordenamiento
+            info: false // Desactivar la información de la tabla
+        });
+    });
+</script>
+{% endblock scripts %}

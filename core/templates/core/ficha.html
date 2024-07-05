@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <style>
+        .detalle-producto {
+            float: left;
+            width: 60%; /* Ancho del contenedor de texto */
+            padding-right: 20px; /* Espacio a la derecha del contenedor de texto */
+        }
+        .cuadro-imagen {
+            float: right;
+            width: 40%; /* Ancho del contenedor de la imagen */
+        }
+        .inicio-producto-imagen {
+            max-width: 100%;
+            height: auto; /* Para mantener la proporción de la imagen */
+        }
+        .botones {
+            clear: both;
+            margin-top: 20px;
+        }
+    </style>
+{% endblock extra_css %}
+
+{% block content %}
+    <!-- Contenido de ficha.html -->
+    <form method="post" id="formulario-ficha">
+        {% csrf_token %}
+        <div class="detalle-producto">
+            <h2>{{ nombre }}</h2>
+            <p>{{ html_estado|safe }}</p>
+            <p>{{ html_precio|safe }}</p>
+            <p>{{ descripcion }}</p>
+            <p>{{ html_stock|safe }}</p>
+            <div class="botones">
+                <input type="hidden" id="accion">
+                <a href="{% url 'comprar_ahora' %}" class="btn btn-primary ancho-160px">Comprar ahora</a>
+                <a href="{% url 'agregar_producto_al_carrito' id %}" class="btn btn-secondary ancho-160px">Agregar al carrito</a>
+            </div>
+        </div>
+        <div class="cuadro-imagen">
+            <img src="/media/{{ imagen }}" class="inicio-producto-imagen">
+        </div>
+        <div style="clear: both;"></div> <!-- Limpia el float para evitar problemas de layout -->
+    </form>
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'core/js/ficha.js' %}"></script>
+{% endblock script %}

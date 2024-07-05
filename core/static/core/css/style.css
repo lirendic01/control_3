@@ -1,0 +1,44 @@
+h1 {
+  font-size: x-large;
+  color: blue !important;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+th {
+  vertical-align: top;
+  background-color: lightgray !important;
+}
+
+input, textarea, select {
+  border-color: darkgray !important; /* Cambia "red" al color deseado */
+}
+
+/* Descomenta el selector div a continuación si quieres ver la diagramación de tu página */
+/* div {
+  border: 1px solid blue;
+} */
+
+
+
+
+h2 {
+  font-size: 36px;
+  color: #333;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.team-member-img {
+  max-width: 900px; 
+  max-height: 200px; 
+}
+
+
+
+
+
+
+
+

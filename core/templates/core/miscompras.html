@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <h1 class="text-start" style="color: black !important; font-size: 35px;">Mis compras anteriores</h1>
+    <br>
+
+    <div class="row">
+        <div class="col"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nro Boleta</th>
+                    <th>Fecha Venta</th>
+                    <th>Fecha Despacho</th>
+                    <th>Fecha Entrega</th>
+                    <th>Monto Total</th>
+                    <th>Estado Actual</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for boleta in historial %}
+                    {% if boleta.estado == 'Anulado' %}
+                        <tr class="letra-boleta-anulada"> 
+                    {% else %}
+                        <tr>
+                    {% endif %}
+                        <td>{{ boleta.nro_boleta }}</td>
+                        <td>{{ boleta.fecha_venta|formatear_fecha }}</td>
+                        <td>{{ boleta.fecha_despacho|formatear_fecha }}</td>
+                        <td>{{ boleta.fecha_entrega|formatear_fecha }}</td>
+                        <td>{{ boleta.total_a_pagar }}</td>
+                        <td>{{ boleta.estado }}</td>
+                        <td>
+                            <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-success">Ver Detalles</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock content %}
